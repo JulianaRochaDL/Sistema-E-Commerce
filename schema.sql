@@ -13,6 +13,7 @@ create table clients(
 );
 
 alter table clients auto_increment=1;
+alter table clients modify Address varchar(100);
 
 -- criar tabela dos clientes PF
 create table clientsPF(
@@ -40,6 +41,7 @@ create table product(
 );
 
 alter table product auto_increment=1;
+alter table product modify Pname varchar(45) not null;
 
 -- criar tabela pagamentos
 create table payments(
