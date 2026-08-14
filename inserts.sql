@@ -13,6 +13,8 @@ insert into Clients (Fname, Minit, Lname, Address)
            ('Daniela', 'S', 'Gonçalves', 'avenida Bernardo Pinto, 96, Lagoa Azul, Nata/RN'),
            ('Pedro', 'E', 'Rocha', 'rua Maciel Dantas, 63, Ponta Branca, Nata/RN');
 
+select * from Clients;
+
 -- idClient, CPF
 insert into clientsPF (idClient, CPF) 
 	values (1, 33362598436),
@@ -25,11 +27,15 @@ insert into clientsPF (idClient, CPF)
 delete from clientsPF
 where CPF in (33362598436, 85222563112, 77652369855);
 
+select * from clientsPF;
+
 -- idClient, CNPJ
 insert into clientsPJ (idClient, CNPJ) 
 	values (1, 69823147000155),
 		   (3, 62587963000163),
            (6, 69873665000152);
+           
+select * from clientsPJ;
 
 -- Pname, classification_kids, category('Eletrônico','Vestimenta','Brinquedos','Calçados','Cosméticos','Alimentos'), rating, size
 insert into product (Pname, classification_kids, category, rating, size, price) 
@@ -43,6 +49,8 @@ insert into product (Pname, classification_kids, category, rating, size, price)
            ('Tablet', false, 'Eletrônico', '4.1', '11"', 1600.00),
            ('Calça jeans', false, 'Vestimenta', '3.8', '40', 209.99),
            ('Tênis', false, 'Calçados', '4.5', '35', 780.00);
+           
+select * from product;
 
 -- idClient, typePayment('Pix','Boleto','Cartão','Dois cartões'), limitAvailable
 insert into payments (idClient, typePayment, limitAvailable) 
@@ -52,7 +60,9 @@ insert into payments (idClient, typePayment, limitAvailable)
            (4, 'Dois cartões', 7000.00),
            (5, 'Cartão', 1800.00),
            (6, 'Pix', NULL);
-                     
+           
+select * from payments;
+
 -- idOrderClient, orderStatus('Cancelado','Confirmado','Em processamento'), orderDescription, sendValue
 insert into orders (idOrderClient, orderStatus, orderDescription, sendValue) 
 	values (1, 'Confirmado', 'Compra de blusa', 12.90),
@@ -69,6 +79,8 @@ insert into orders (idOrderClient, orderStatus, orderDescription, sendValue)
            (4, default, 'Compra de blush', 9.90),
            (2, 'Confirmado', 'Compra de máscara de cílios', 11.90),
            (1, 'Confirmado', 'Compra de tablet e fone de ouvido', 28.90);
+           
+select * from orders;
                    
 -- storageLocation
 insert into productStorage (storageLocation) 
@@ -83,6 +95,8 @@ insert into productStorage (storageLocation)
            ('Filial - Teresina/PI'),
            ('Filial - São Luís/MA');
            
+select * from productStorage;
+
 -- socialName, CNPJ, contact
 insert into supplier (socialName, CNPJ, contact)
 	values ('Tech Solutions Ltda', '12345678000101', '84991234567'),
@@ -95,6 +109,8 @@ insert into supplier (socialName, CNPJ, contact)
            ('Distribuidora Central Ltda', '89012345000178', '11994332211'),
            ('Importadora Global Ltda', '90123456000189', '61993221100'),
            ('Mega Fornecimentos Ltda', '01234567000190', '31992110099');
+           
+select * from supplier;
 
 -- socialName, abstName, CNPJ, CPF, location, contact
 insert into seller (socialName, abstName, CNPJ, CPF, location, contact)
@@ -108,6 +124,8 @@ insert into seller (socialName, abstName, CNPJ, CPF, location, contact)
            ('Pedro Oliveira', null, null, '34567890123', 'Campina Grande/PB', '83991098765'),
            ('Ana Beatriz Lima', null, null, '45678901234', 'Maceió/AL', '82990987654'),
            ('Lucas Ferreira', null, null, '56789012345', 'Aracaju/SE', '79999876543');
+           
+select * from seller;
       
 -- idPseller, idProduct, prodQuantity
 insert into productSeller (idPseller, idProduct, prodQuantity) 
@@ -130,11 +148,13 @@ insert into productSeller (idPseller, idProduct, prodQuantity)
            (9, 10, 16),
            (10, 6, 55),
            (10, 7, 14);
+           
+select * from productSeller;
       
 select min(idOrder), max(idOrder)
 from orders;
 
--- idPOproduct, idPOorder, poQuantity, poStatus
+-- idPOproduct, idPOorder, poQuantity, poStatus('Disponível','Sem estoque')
 insert into productOrder (idPOproduct, idPOorder, poQuantity, poStatus) 
 	values (1, 1, 2, 'Disponível'),
 		   (2, 1, 1, 'Disponível'),
@@ -166,6 +186,8 @@ insert into productOrder (idPOproduct, idPOorder, poQuantity, poStatus)
            (2, 14, 2, 'Disponível'),
            (9, 14, 3, 'Disponível'),
            (1, 14, 1, 'Disponível');
+           
+select * from productOrder;
 
 -- idLproduct, idLstorage, SLquantity, location
 insert into storageLocation (idLproduct, idLstorage, SLquantity, location)
@@ -184,6 +206,53 @@ insert into storageLocation (idLproduct, idLstorage, SLquantity, location)
            (1, 3, 12, 'Corredor C - Prateleira 01'),
            (5, 6, 14, 'Corredor F - Prateleira 02'),
            (9, 5, 9, 'Corredor E - Prateleira 04');
+           
+select * from storageLocation;
+           
+-- idPsSupplier, idPsProduct, quantity
+insert into productSupplier (idPsSupplier, idPsProduct, quantity)
+	values (1, 2, 120),
+		   (1, 8, 45),
+           (2, 1, 200),
+           (2, 9, 150),
+           (3, 3, 60),
+           (3, 7, 30),
+           (4, 5, 180),
+           (4, 6, 160),
+           (5, 4, 300),
+           (6, 10, 100),
+           (7, 2, 80),
+           (7, 8, 35),
+           (8, 1, 140),
+           (8, 9, 90),
+           (9, 3, 50),
+           (9, 10, 70),
+           (10, 5, 120),
+           (10, 6, 100);
+           
+select * from productSupplier;
+
+-- idOrder, trackingCode, deliveryStatus('Em processamento','Enviado','Em transporte','Saiu para entrega','Entregue','Cancelado')
+insert into delivery (idOrder, trackingCode, deliveryStatus)
+	values (1, 'BR100000001', 'Entregue'),
+		   (2, 'BR100000002', 'Em transporte'),
+           (3, 'BR100000003', default),
+           (4, 'BR100000004', 'Cancelado'),
+           (5, 'BR100000005', 'Entregue'),
+           (6, 'BR100000006', 'Enviado'),
+           (7, 'BR100000007', 'Saiu para entrega'),
+           (8, 'BR100000008', 'Entregue'),
+           (9, 'BR100000009', default),
+           (10, 'BR100000010', 'Enviado'),
+           (11, 'BR100000011', 'Entregue'),
+           (12, 'BR100000012', 'Em processamento'),
+           (13, 'BR100000013', 'Entregue'),
+           (14, 'BR100000014', 'Em transporte');
+           
+select * from delivery;
+    
+
+
            
 
 
