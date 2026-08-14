@@ -74,6 +74,7 @@ create table productStorage(
 );
 
 alter table productStorage auto_increment=1;
+alter table productStorage drop column quantity;
 
 -- criar tabela fornecedor
 create table supplier(
@@ -100,6 +101,8 @@ create table seller(
 );
 
 alter table seller auto_increment=1;
+alter table seller add constraint chk_seller_pf_pj
+	check ((CPF is not null and CNPJ is null) or (CPF is null and CNPJ is not null));
 
 -- criar tabela Produtos/vendedor
 create table productSeller(
