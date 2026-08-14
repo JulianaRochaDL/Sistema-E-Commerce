@@ -1,5 +1,5 @@
 -- criação do banco de dados para o cenário de E-commerce
-
+-- drop database ecommerce;
 create database ecommerce;
 use ecommerce;
 
@@ -9,11 +9,10 @@ create table clients(
     Fname varchar(10),
     Minit char(3),
     Lname varchar(20),
-    Address varchar(30)
+    Address varchar(100)
 );
 
 alter table clients auto_increment=1;
-alter table clients modify Address varchar(100);
 
 -- criar tabela dos clientes PF
 create table clientsPF(
@@ -33,15 +32,15 @@ create table clientsPJ(
 -- size = dimensão do produto
 create table product(
 	idProduct int auto_increment primary key,
-    Pname varchar(10) not null,
+    Pname varchar(45) not null,
     classification_kids bool default false,
     category enum('Eletrônico','Vestimenta','Brinquedos','Calçados','Cosméticos','Alimentos') not null,
     rating float default 0,
-    size varchar(10)
+    size varchar(10),
+    price decimal(10, 2) not null
 );
 
 alter table product auto_increment=1;
-alter table product modify Pname varchar(45) not null;
 
 -- criar tabela pagamentos
 create table payments(
@@ -52,6 +51,8 @@ create table payments(
     constraint fk_payments_client foreign key (idClient) references clients(idClient)
 );
 
+alter table payments auto_increment=1;
+
 -- criar tabela pedido
 create table orders(
 	idOrder int auto_increment primary key,
@@ -59,7 +60,6 @@ create table orders(
     orderStatus enum('Cancelado','Confirmado','Em processamento') default 'Em processamento',
     orderDescription varchar(255),
     sendValue float default 10,
-    paymentCash bool default false,
     constraint fk_orders_client foreign key (idOrderClient) references clients(idClient)
 		on update cascade
 );
