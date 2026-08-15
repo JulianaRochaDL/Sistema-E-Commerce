@@ -124,7 +124,15 @@ insert into seller (socialName, abstName, CNPJ, CPF, location, contact)
            ('Pedro Oliveira', null, null, '34567890123', 'Campina Grande/PB', '83991098765'),
            ('Ana Beatriz Lima', null, null, '45678901234', 'Maceió/AL', '82990987654'),
            ('Lucas Ferreira', null, null, '56789012345', 'Aracaju/SE', '79999876543');
-           
+
+update seller
+set CNPJ = '67890123000156'
+where socialName = 'Calçados Premium Ltda';
+
+update seller
+set CNPJ = '45678901000134'
+where socialName = 'Cosméticos Bella Ltda';
+
 select * from seller;
       
 -- idPseller, idProduct, prodQuantity
