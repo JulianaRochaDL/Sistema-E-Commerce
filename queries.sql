@@ -22,7 +22,7 @@ from seller se
 join supplier su
 	on se.CNPJ = su.CNPJ;
 
--- Relação de produtos/fornecedores e estoques;
+-- Relação entre produtos, fornecedores e estoques.
 select 
 	p.Pname as Product,
     su.socialName as name_supplier,
@@ -41,7 +41,7 @@ join productStorage st
 	on st.idProductStorage = sl.idLstorage;
 
 -- As cláusulas podem estar presentes em mais de uma query. 
--- Ex: Consulta para identificar os clientes que realizaram mais de um pedido
+-- Ex: Identificação dos clientes que realizaram mais de um pedido.
 select 
 	c.idClient,
     concat(c.Fname, ' ', c.Lname) as clientName,
@@ -66,13 +66,13 @@ where o.orderStatus = 'Confirmado'
 group by c.idClient
 order by clientName;
 
--- Produtos com preço acima de R$ 100
+-- Quais produtos custam mais de R$ 100,00?
 select idProduct, Pname, price
 from product
 where price > 100
 order by price asc;
 
--- Média de preço por categoria
+-- Qual é a média de preço por categoria?
 select
 	category,
     round(avg(price), 2) as avgPrice
@@ -90,7 +90,7 @@ join product p
 where p.category = 'Eletrônico'
 order by p.Pname;
 
--- Classificando produtos por faixa de preço:
+-- Classificação dos produtos por faixa de preço:
 -- até R$ 50,00 = barato
 -- de R$ 51,00 a R$ 200,00 = médio
 -- acima de R$ 200,00 = caro
