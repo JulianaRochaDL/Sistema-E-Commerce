@@ -86,7 +86,7 @@ from supplier s
 join productSupplier ps
     on s.idSupplier = ps.idPsSupplier
 join product p
-	on ps.idPsSupplier = p.idProduct
+	on ps.idPsProduct = p.idProduct
 where p.category = 'Eletrônico'
 order by p.Pname;
 
@@ -105,6 +105,28 @@ select
 from product
 order by price;
 
+-- Quais são os produtos mais caros?
+select
+    Pname,
+    category,
+    price,
+    rank() over(order by price desc) as priceRank
+from product
+order by price desc;
+
+-- Qual a quantidade de cada produto e o total armazenado em cada estoque?
+select
+	ps.storageLocation,
+    p.Pname,
+    sl.SLquantity,
+    sum(sl.SLquantity) 
+		over(partition by sl.idLstorage) as totalStorage
+from product p
+join storageLocation sl
+    on p.idProduct = sl.idLproduct
+join productStorage ps
+	on ps.idProductStorage = sl.idLstorage
+order by ps.storageLocation, p.Pname;
 
 
 
